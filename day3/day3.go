@@ -12,8 +12,8 @@ import (
 )
 
 type point struct {
-	x int
-	y int
+	x        int
+	y        int
 	distance int
 }
 
@@ -31,7 +31,7 @@ func main() {
 
 	shortest := math.MaxInt32
 	for _, intersection := range intersections {
-		shortest = min(shortest, intersection.distance )
+		shortest = min(shortest, intersection.distance)
 	}
 	fmt.Println("Day 3B:", shortest)
 	fmt.Println(time.Since(start))
@@ -54,18 +54,25 @@ func abs(x int) int {
 func intersect(left []point, right []point) []point {
 	var result []point
 
+	lookup := make(map[point]int)
+
+	for _, point := range right {
+		distance := point.distance
+		point.distance = 0
+		lookup[point] = distance
+	}
+
 	for _, a := range left {
-		for _, b := range right {
-			if a.x == b.x && a.y == b.y {
-				result = append(result, point {x:a.x, y:a.y, distance:a.distance + b.distance})
-			}
+		distanceA := a.distance
+		a.distance = 0
+		distanceB := lookup[a]
+		if distanceB > 0 {
+			result = append(result, point{x: a.x, y: a.y, distance: distanceA + distanceB})
 		}
 	}
 
 	return result
 }
-
-
 
 func getPoints(wire []string) []point {
 	x := 0
@@ -81,7 +88,7 @@ func getPoints(wire []string) []point {
 			log.Fatal(err)
 		}
 		for i := 0; i < amount; i++ {
-			distance ++
+			distance++
 			switch direction {
 			case "R":
 				x++
@@ -94,9 +101,8 @@ func getPoints(wire []string) []point {
 			default:
 				log.Fatal("unknown direction " + direction)
 			}
-			points = append(points, point{x:x, y:y, distance:distance})
+			points = append(points, point{x: x, y: y, distance: distance})
 		}
-		//println(instruction, direction, amount)
 	}
 	return points
 }
