@@ -34,7 +34,7 @@ func main() {
 }
 
 func getLines() []int {
-	file, err := os.Open("./input/day1.txt")
+	file, err := os.Open("./day1/day1.txt")
 	if err != nil {
 		log.Fatal(err)
 	}

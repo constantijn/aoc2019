@@ -60,7 +60,7 @@ func solve(stack []int, noun int, verb int) int {
 }
 
 func readFile() []int {
-	file, err := os.Open("./input/day2.txt")
+	file, err := os.Open("./day2/day2.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -70,13 +70,13 @@ func readFile() []int {
 	scanner := bufio.NewScanner(file)
 	scanner.Scan()
 	for _, linePart := range strings.Split(scanner.Text(), ",") {
-		n, err := strconv.ParseInt(linePart, 10, 32)
+		n, err := strconv.Atoi(linePart)
 
 		if err != nil {
 			log.Fatal("Can't parse to int: " + scanner.Text() )
 		}
 
-		result = append(result, int(n))
+		result = append(result, n)
 	}
 	return result
 }
