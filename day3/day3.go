@@ -54,7 +54,7 @@ func abs(x int) int {
 func intersect(left []point, right []point) []point {
 	var result []point
 
-	lookup := make(map[point]int)
+	lookup := make(map[point]int, len(right))
 
 	for _, point := range right {
 		distance := point.distance
