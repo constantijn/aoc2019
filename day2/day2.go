@@ -22,9 +22,9 @@ func main() {
 	for i := 0; i < 100; i++ {
 		for j := 0; j < 100; j++ {
 			copy(stackcopy, stack)
-			result := solve(stackcopy, i,j)
+			result := solve(stackcopy, i, j)
 			if result == 19690720 {
-				fmt.Println("2B", 100*i + j, time.Since(start))
+				fmt.Println("2B", 100*i+j, time.Since(start))
 				os.Exit(0)
 			}
 		}
@@ -44,7 +44,6 @@ func solve(stack []int, noun int, verb int) int {
 		operand1 := stack[stack[counter+1]]
 		operand2 := stack[stack[counter+2]]
 		destination := stack[counter+3]
-
 
 		if opcode == 1 {
 			stack[destination] = operand1 + operand2
@@ -73,7 +72,7 @@ func readFile() []int {
 		n, err := strconv.Atoi(linePart)
 
 		if err != nil {
-			log.Fatal("Can't parse to int: " + scanner.Text() )
+			log.Fatal("Can't parse to int: " + scanner.Text())
 		}
 
 		result = append(result, n)

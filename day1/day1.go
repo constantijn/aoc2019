@@ -15,7 +15,7 @@ func main() {
 	//println(caculateFuel1(100756))
 
 	result := 0
-	lines :=  getLines()
+	lines := getLines()
 	for _, line := range lines {
 		result += caculateFuel1(line)
 	}
@@ -48,7 +48,7 @@ func getLines() []int {
 		n, err := strconv.ParseInt(scanner.Text(), 10, 32)
 
 		if err != nil {
-			log.Fatal("Can't parse to int: " + scanner.Text() )
+			log.Fatal("Can't parse to int: " + scanner.Text())
 		}
 
 		result = append(result, int(n))

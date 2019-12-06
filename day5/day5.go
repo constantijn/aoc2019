@@ -35,11 +35,11 @@ func solve(stack []int, input int) []int {
 		mode1 := instruction / 100 % 10
 		mode2 := instruction / 1000 % 10
 
-		if opcode  == 99 {
+		if opcode == 99 {
 			break
 		}
 
-		if opcode  == 1 {
+		if opcode == 1 {
 			operand1 := operandValue(stack, counter+1, mode1)
 			operand2 := operandValue(stack, counter+2, mode2)
 			destination := stack[counter+3]
@@ -103,7 +103,7 @@ func solve(stack []int, input int) []int {
 	return result
 }
 
-func operandValue (stack []int, index int, mode int) int {
+func operandValue(stack []int, index int, mode int) int {
 	result := -1
 	if mode == 0 {
 		result = stack[stack[index]]
@@ -129,7 +129,7 @@ func readFile() []int {
 		n, err := strconv.Atoi(linePart)
 
 		if err != nil {
-			log.Fatal("Can't parse to int: " + scanner.Text() )
+			log.Fatal("Can't parse to int: " + scanner.Text())
 		}
 
 		result = append(result, n)
