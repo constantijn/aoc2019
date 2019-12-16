@@ -89,12 +89,13 @@ func main() {
 		}
 
 		if i > 999999 {
-			print(grid, fixX, fixY)
-			fmt.Println("15A done (manually count path)", time.Since(start))
+			//print(grid, fixX, fixY)
+			//fmt.Println("15A done (manually count path)", time.Since(start))
 			break
 		}
 	}
 
+	fmt.Println("Maze generation", time.Since(start))
 	start = time.Now()
 	minutes := 0
 	newPoints := []point{point{fixX, fixY}}
@@ -118,11 +119,15 @@ func main() {
 		for newPoint := range newPointSet {
 			newPoints = append(newPoints, newPoint)
 			grid[newPoint.x][newPoint.y] = "O"
+			if newPoint.x == 21 && newPoint.y == 21 {
+				fmt.Println("Day 15A", minutes+2, time.Since(start))
+				start = time.Now()
+			}
 		}
 		minutes++
 
 		if len(newPoints) == 0 {
-			print(grid, fixX, fixY)
+			//print(grid, fixX, fixY)
 			fmt.Println("Day 15B", minutes, time.Since(start))
 			break
 		}
